@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="content-type" content="text/html; charset=windows-1251">
+<script LANGUAGE="JavaScript">
+  var f1=0; var f2=0; // факт занесения в переменные num1 num2 значения
+  var num1=0; 
+  var num2=0; 
+  var result=0; // сброс исходных данных
+  var zn=""; // знак операции fun(num) // num - это цифра или знак или управ кнопка (= или сброс)
+  function fun(num)
+{
+  var f=document.alg;
+  result=0; // сброс исходных данных
+  if(num>=0 && num<=9)
+  { // внешний если проверяет переданные числа от 1го до 9ти. 
+	 if(f.result.value=='0') 
+	    f.result.value=num; // если в поле 0, то есть ничего не введено, то он первую цифру вставит в это поле
+	 else if(f.result.value!='0') 
+	    f.result.value=f.result.value+num; // иначе , он цифру добавит к тому , что есть в поле. Здесь происходит неявное преобразование числа num в string
+  }
+  else if(num==-1) // нажато C
+   {
+    f.result.value='0';
+	f1=false; f2=false; // факт занесения в переменные num1 num2 значения
+    num1=0; num2=0; result=0;
+	
+   }
+  else if(num==-2 || num==-3 || num==-4 || num==-5)
+   {
+     zn=num;
+	// alert(zn);
+    if(f1==0)
+	{
+    num1=f.result.value;  f1=1;
+	f.result.value='0';
+	}
+   }
+   else if(num==-6)
+    {
+	  if((f1==1) && (f2==0))
+	  {
+	    num2=f.result.value;  f2=1;
+	   }
+	
+	
+    if((f1==1) && (f2==1) && (result==0))
+	{ 
+	  switch(zn)
+	  {
+	  case -2: {result=num1 * num2;break;}
+	  case -3: {result=num1 / num2;break;}
+	  case -4: {result=parseInt(num1) + parseInt(num2);break;}
+	  case -5: {result=num1 - num2;break;}
+	  default: break;
+	  }
+	  f.result.value=result;
+	}
+	
+	if((f1==1) && (f2==1) && (result!=0))
+	{ 
+	  num1=result; result=0; f2=0; num2=0;
+	  //f.result.value='0';
+	}
+   }
+ 
+}
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<h3>Операторы</h3>
+<form name="alg" method="post" action="" onSubmit="">
+<input type="text" size="6" maxlength="6" value="0" name="result"><input type="button" value="C" name="reset" onClick="fun(-1)">
+<br>
+<input type="button" value="7" name="b7" onClick="fun(7);"><input type="button" value="8" name="b8" onClick="fun(8);"><input type="button" value="9" name="b9" onClick="fun(9);"><input type="button" value="*" name="umg" onClick="fun(-2);">
+<br>
+<input type="button" value="4" name="b4" onClick="fun(4);"><input type="button" value="5" name="b5" onClick="fun(5)"><input type="button" value="6" name="b6" onClick="fun(6);"><input type="button" value="/" name="del" onClick="fun(-3);">
+<br>
+<input type="button" value="1" name="b1" onClick="fun(1);"><input type="button" value="2" name="b2" onClick="fun(2);"><input type="button" value="3" name="b3" onClick="fun(3);"><input type="button" value="+" name="umg" onClick="fun(-4);">
+<br>
+<input type="button" value="   0   " name="b0" onClick="fun(0);"><input type="button" value="=" name="ravno" onClick="fun(-6);">
+<input type="button" value="-" name="minus" onClick="fun(-5);">
+
+</form> 
+</body>
+</html>
