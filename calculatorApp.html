@@ -3,33 +3,32 @@
 <title>Untitled Document</title>
 <meta http-equiv="content-type" content="text/html; charset=windows-1251">
 <script LANGUAGE="JavaScript">
-  var f1=0; var f2=0; // факт занесения в переменные num1 num2 значения
+  var f1=0; var f2=0;
   var num1=0; 
   var num2=0; 
-  var result=0; // сброс исходных данных
-  var zn=""; // знак операции fun(num) // num - это цифра или знак или управ кнопка (= или сброс)
+  var result=0;
+  var zn=""; 
   function fun(num)
 {
   var f=document.alg;
-  result=0; // сброс исходных данных
+  result=0; 
   if(num>=0 && num<=9)
-  { // внешний если проверяет переданные числа от 1го до 9ти. 
+  { 
 	 if(f.result.value=='0') 
-	    f.result.value=num; // если в поле 0, то есть ничего не введено, то он первую цифру вставит в это поле
+	    f.result.value=num; 
 	 else if(f.result.value!='0') 
-	    f.result.value=f.result.value+num; // иначе , он цифру добавит к тому , что есть в поле. Здесь происходит неявное преобразование числа num в string
+	    f.result.value=f.result.value+num;
   }
-  else if(num==-1) // нажато C
+  else if(num==-1)
    {
     f.result.value='0';
-	f1=false; f2=false; // факт занесения в переменные num1 num2 значения
+	f1=false; f2=false;
     num1=0; num2=0; result=0;
 	
    }
   else if(num==-2 || num==-3 || num==-4 || num==-5)
    {
      zn=num;
-	// alert(zn);
     if(f1==0)
 	{
     num1=f.result.value;  f1=1;
@@ -60,7 +59,6 @@
 	if((f1==1) && (f2==1) && (result!=0))
 	{ 
 	  num1=result; result=0; f2=0; num2=0;
-	  //f.result.value='0';
 	}
    }
  
@@ -68,8 +66,7 @@
 </script>
 </head>
 
-<body bgcolor="#FFFFFF" text="#000000">
-<h3>Операторы</h3>
+<body>
 <form name="alg" method="post" action="" onSubmit="">
 <input type="text" size="6" maxlength="6" value="0" name="result"><input type="button" value="C" name="reset" onClick="fun(-1)">
 <br>
